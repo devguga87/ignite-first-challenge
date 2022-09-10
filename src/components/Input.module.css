@@ -1,0 +1,36 @@
+.input {
+  padding: 16px;
+  gap: 8px;
+
+  max-width: 638px;
+  width: 100%;
+  height: 54px;
+
+  background: var(--gray-500);
+  border: 1px solid  var(--gray-700);
+  border-radius: 8px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+
+  color: #F2F2F2;
+}
+
+.input:focus{
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--purple-dark);
+}
+
+.input::placeholder{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+
+  color: var(--gray-300);
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

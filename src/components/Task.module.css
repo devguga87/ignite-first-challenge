@@ -1,0 +1,38 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:20px;
+  border-radius: 8px;
+  height: 7.2rem;
+  background-color:var(--gray-400) ;
+  cursor: pointer;
+}
+
+.content{
+  display: flex;
+  align-items: center;
+}
+
+.textContent{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+
+  color: var(--gray-100);
+  margin-left:12px;
+}
+
+.teste{
+  color:red;
+  height:400;
+}
+
+.buttonDelete {
+  background-color: transparent;
+  border: none;
+}
+
+.buttonImg svg{
+  fill:red;
+}
