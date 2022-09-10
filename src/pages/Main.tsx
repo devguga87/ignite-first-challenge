@@ -5,11 +5,14 @@ import styles from './Main.module.css'
 
 import logoImage from '../assets/logo.svg'
 import noContentImage from '../assets/clipboard.svg'
+import plusImage from '../assets/plus.svg'
 
 const Main = () => {
   const [tasks, setTasks] = useState<string[]>([])
   const [newTask, setNewTask] = useState<string>('')
   const [checkedCount, setCheckedCount] = useState(0)
+
+  const formIsValid = newTask.trim().length !== 0
 
   const handleUpdateCheckedCount = (soma:boolean) => {
     if(soma){
@@ -18,8 +21,6 @@ const Main = () => {
       setCheckedCount(prev => prev - 1)
     }
   }
-
-  const formIsValid = newTask.trim().length !== 0
 
   const deleteTask = (content:string) => {
     setTasks(prev => prev.filter(item => item !== content))
@@ -31,15 +32,12 @@ const Main = () => {
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
-    console.log('submited')
 
     if(!formIsValid){
       return
     }
 
-    console.log('submited 2')
-
-    setTasks(prev => [...prev,newTask])
+    setTasks(prev => [newTask,...prev])
     setNewTask('')
   }
 
@@ -51,7 +49,7 @@ const Main = () => {
       <div className={styles.content}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <Input value={newTask} onChange={handleCreateTask} placeholder='Adicione uma nova tarefa'/>
-          <button className={styles.buttonSubmit} type='submit'>Nova</button>
+          <button className={styles.buttonSubmit} type='submit' disabled={!formIsValid}>Criar <img src={plusImage} /></button>
         </form>
         <div>
           <div className={styles.tasksHeader}>
@@ -69,8 +67,6 @@ const Main = () => {
           )}
         </div>
       </div>
-      
-      {/* {tasks.map(task => <Task content={task.content}/>)} */}
     </div>
   )
 }

@@ -4,14 +4,28 @@
   justify-content: space-between;
   padding:20px;
   border-radius: 8px;
+  border: 2px solid var(--gray-400);
   height: 7.2rem;
-  background-color:var(--gray-400) ;
-  cursor: pointer;
+  background-color:var(--gray-500) ;
+  margin-bottom:12px;
 }
+
+.checked{
+  border: 2px solid var(--gray-500);
+  background-color: var(--gray-500);
+  text-decoration: line-through;
+  color:var(--gray-300);
+}
+
+.checked  p{
+  color:var(--gray-300);
+}
+
 
 .content{
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .textContent{
@@ -29,10 +43,21 @@
 }
 
 .buttonDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 4px;
   background-color: transparent;
   border: none;
+  color:var(--gray-700);
+  transition:all .2s;
 }
 
-.buttonImg svg{
-  fill:red;
+.buttonDelete:hover {
+  background-color: var(--gray-400);
+  border: none;
+  color:var(--danger);
 }
+

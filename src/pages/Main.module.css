@@ -37,6 +37,8 @@
 
 
 .buttonSubmit{
+  display: flex;
+  align-items: center;
   border: none;
   padding: 16px;
   gap: 8px;
@@ -52,7 +54,16 @@
   line-height: 140%;
 
   color: var(--gray-100);
-  
+  transition: background-color .3s ;
+}
+
+.buttonSubmit:hover{
+  background-color: var(--blue);
+}
+
+.buttonSubmit:disabled{
+  background-color: var(--gray-500);
+  cursor: not-allowed;
 }
 
 @media(max-width:450px){
@@ -63,6 +74,7 @@
   }
   .buttonSubmit{
     width: 100%;
+    justify-content: center;
   }
 }
 
