@@ -21,17 +21,17 @@ const Task = ({id, content, onDelete,onCheck, checked}:ITaskProps) => {
       onDelete(id)
     }
 
-    if(isChecked){
+    if(isChecked && onCheck){
       onCheck(false)
     }
   }
 
   const handleCheckTask = () => {
     setIsChecked(prev => !prev)
-    if(!isChecked){
+    if(!isChecked && onCheck){
       onCheck(true)
     }
-    if(isChecked){
+    if(isChecked && onCheck){
       onCheck(false)
     }
   }
