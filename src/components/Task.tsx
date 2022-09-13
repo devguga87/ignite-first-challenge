@@ -4,39 +4,44 @@ import { useEffect, useState } from 'react';
 import notCheckedImg from '../assets/checked-false-hover-false.svg'
 import checkedImg from '../assets/checked-true-hover-false.svg'
 
-interface TaskProps {
+export interface ITaskProps {
+  id?:string;
   content:string;
-  onDelete:(content:string)=>void,
-  onCheck:(content:boolean)=>void
+  checked:boolean;
+  onDelete?:(content:string)=>void;
+  onCheck?:(content:boolean)=>void
 }
 
-const Task = ({ content, onDelete,onCheck}:TaskProps) => {
-  const [checked, setChecked] = useState(false)
+const Task = ({id, content, onDelete,onCheck, checked}:ITaskProps) => {
+  const [isChecked, setIsChecked] = useState(checked)
 
   const handleDelete = () => {
-    onDelete(content)
 
-    if(checked){
+    if(onDelete && id){
+      onDelete(id)
+    }
+
+    if(isChecked){
       onCheck(false)
     }
   }
 
   const handleCheckTask = () => {
-    setChecked(prev => !prev)
-    if(!checked){
+    setIsChecked(prev => !prev)
+    if(!isChecked){
       onCheck(true)
     }
-    if(checked){
+    if(isChecked){
       onCheck(false)
     }
   }
 
-  const checkedStyle = checked ? `${styles.container} ${styles.checked}` : `${styles.container}`
+  const checkedStyle = isChecked ? `${styles.container} ${styles.checked}` : `${styles.container}`
 
   return (
     <div className={checkedStyle} >
       <div className={styles.content} onClick={handleCheckTask}>
-        {!checked ? <img src={notCheckedImg}/> : <img src={checkedImg}/> }
+        {!isChecked ? <img src={notCheckedImg}/> : <img src={checkedImg}/> }
         <p className={styles.textContent}>{content}</p>
       </div>
       <button className={styles.buttonDelete} onClick={handleDelete}>

@@ -1,6 +1,6 @@
 import { FormEvent, SetStateAction, useState } from "react"
 import Input from "../components/Input"
-import Task from "../components/Task"
+import Task, { ITaskProps } from "../components/Task"
 import styles from './Main.module.css'
 
 import logoImage from '../assets/logo.svg'
@@ -8,7 +8,7 @@ import noContentImage from '../assets/clipboard.svg'
 import plusImage from '../assets/plus.svg'
 
 const Main = () => {
-  const [tasks, setTasks] = useState<string[]>([])
+  const [tasks, setTasks] = useState<ITaskProps[]>([])
   const [newTask, setNewTask] = useState<string>('')
   const [checkedCount, setCheckedCount] = useState(0)
 
@@ -22,8 +22,8 @@ const Main = () => {
     }
   }
 
-  const deleteTask = (content:string) => {
-    setTasks(prev => prev.filter(item => item !== content))
+  const deleteTask = (id:string) => {
+    setTasks(prev => prev.filter(item => item.id !== id))
   }
 
   const handleCreateTask = (event: { target: { value: SetStateAction<string> } })=>{
@@ -37,7 +37,9 @@ const Main = () => {
       return
     }
 
-    setTasks(prev => [newTask,...prev])
+    const novaTask = {id:String(Math.random()), content:newTask, checked:false}
+
+    setTasks(prev => [novaTask,...prev])
     setNewTask('')
   }
 
@@ -57,7 +59,7 @@ const Main = () => {
             <div className={styles.contador}><p className={styles.concludedTasks}>Concluidas </p><span>{checkedCount} de {tasks.length}</span></div>
           </div>
             {tasks.length > 0 ? <div className={styles.tasksContainer}>
-            {tasks.map(task => <Task key={task} content={task} onDelete={deleteTask} onCheck={handleUpdateCheckedCount}/>)}
+            {tasks.map(task => <Task key={task.id} id={task.id} content={task.content} checked={task.checked} onDelete={deleteTask} onCheck={handleUpdateCheckedCount}/>)}
           </div> : (
             <div className={styles.noContentContainer}>
               <img src={noContentImage} alt="" />
